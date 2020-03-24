@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Instaclone</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Instaclone</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link href='https://fonts.googleapis.com/css?family=Sacramento' rel="styleseet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
 
-  <header>
-    <div class="header_container">
-      <div class="title">Instaclone</div>
-      <div class="headers">検索</div>
-      <div class="headers">ホーム</div>
-      <div class="headers">いいね</div>
-      <div class="headers">プロフ画像</div>
-    </div>
-  </header>
-
-  <body>
-  <div class="body">
-    <div class="body_mid">
-      <div class="information">
-        <% if flash.notice.present? %>
-          <div class="alert alert-success">
-            <%= flash[:notice] %>
-          </div>
-        <% end %>
-      </div>
-      <%= yield %>
+<header>
+  <div class="header_container">
+    <div class="title">Instaclone</div>
+    <div class="headers">検索</div>
+    <div class="icons">
+      <div class="home_icon">ホーム</div>
+      <div class="favorite_icon">いいね</div>
+      <div class="profile_icon">プロフ画像</div>
     </div>
   </div>
-  </body>
+</header>
 
-  <footer>
-    <a>©︎2020 INSTACLONE FROM FACEBOOK CLONE</a>
-  </footer>
+<body>
+<div class="body">
+  <div class="body_mid">
+    <div class="information">
+      <% if flash.notice.present? %>
+        <div class="alert alert-success">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+    </div>
+    <%= yield %>
+  </div>
+</div>
+</body>
+
+<footer>
+  <a>©︎2020 INSTACLONE FROM FACEBOOK CLONE</a>
+</footer>
 
 </html>
