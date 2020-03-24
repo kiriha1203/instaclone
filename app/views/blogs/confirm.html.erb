@@ -1,0 +1,21 @@
+<h3>以下の内容で、投稿する。</h3>
+
+<div class="nav.justify-content-end">
+  <%= link_to '一覧', blogs_path, class: 'nav-link' %>
+</div>
+
+<%= form_with(model: @blog, local: true) do |f| %>
+  <div class="form-group">
+    <div class="item"><%= f.label '画像' %></div>
+    <div class="item">
+      <%#= f.hidden_field :image, value: f.object.image.signed_id %>
+      <%#= image_tag(@blog.image, class: 'image') %>
+    </div>
+    <%= f.hidden_field :content %>
+    <div class="item"><%= f.label '内容' %></div>
+    <div class="item"><%= @blog.content %></div>
+  </div>
+
+  <%= f.submit "投稿する", class: 'btn btn-primary' %>
+  <%= f.submit "戻る", name: 'back', class: 'btn btn-primary' %>
+<% end %>
