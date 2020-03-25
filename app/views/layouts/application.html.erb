@@ -18,9 +18,24 @@
     <div class="title">Instaclone</div>
     <div class="headers">検索</div>
     <div class="icons">
-      <div class="home_icon">ホーム</div>
-      <div class="favorite_icon">いいね</div>
-      <div class="profile_icon">プロフ画像</div>
+      <%if logged_in? %>
+        <div class="home_icon">
+          <%= link_to "ホーム", root_path %>
+        </div>
+        <div class="favorite_icon">いいね</div>
+        <div class="profile_icon">
+          <%= link_to "プロフ画像",user_path(current_user.id) %></div>
+        <div class="logout">
+          <%= link_to "ログアウト", session_path(current_user.id), method: :delete  %>
+        </div>
+      <% else %>
+        <div class="sign_login">
+          <%= link_to "新規登録", new_user_path %>
+        </div>
+        <div class="sign_login">
+          <%= link_to "ログイン", new_session_path %>
+        </div>
+      <% end %>
     </div>
   </div>
 </header>
@@ -33,6 +48,11 @@
         <div class="alert alert-success">
           <%= flash[:notice] %>
         </div>
+        <% elsif flash.present?%>
+        <div class="alert alert-danger">
+          <%= flash[:danger] %>
+        </div>
+        <% else %>
       <% end %>
     </div>
     <%= yield %>
