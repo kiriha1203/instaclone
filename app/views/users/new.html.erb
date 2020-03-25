@@ -1,19 +1,18 @@
 <div class="create_account_body">
-
-  <%# if @user.errors.any? %>
-  <!--      <div id="error_explanation">-->
-  <!--        <ul>-->
-  <%# @user.errors.full_messages.each do |msg| %>
-  <!--            <li><%#= msg %></li>-->
-  <%# end %>
-  <!--        </ul>-->
-  <!--      </div>-->
-  <%# end %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="create_account_form">
     <%= form_with(model: @user, local: true) do |f| %>
       <div class="title">Instaclone</div>
-      <div class="name_box"><%= f.text_field :name, class: 'create_account_form_box', :placeholder => "ユーザー名"%></div>
+      <div class="name_box"><%= f.text_field :name, class: 'create_account_form_box', :placeholder => "ユーザー名" %></div>
       <div class="email_box"><%= f.email_field :email, class: 'create_account_form_box', :placeholder => "メールアドレス" %></div>
       <div class="password_box"><%= f.password_field :password, class: 'create_account_form_box', :placeholder => "パスワード" %></div>
       <div class="password_box2"><%= f.password_field :password_confirmation, class: 'create_account_form_box', :placeholder => "パスワード確認" %></div>
@@ -23,7 +22,7 @@
 
   <div class="to_login">
     <p class="comment">アカウントをお持ちですか？
-    <%#= link_to 'ログインする', blogs_path, class: 'nav-link' %>
+      <%#= link_to 'ログインする', blogs_path, class: 'nav-link' %>
     </p>
   </div>
 </div>
