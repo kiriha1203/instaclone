@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :blogs
+  has_one_attached :image
+
   before_validation { email.downcase! }
   validates :name, presence: true, length: { maximum: 30 }, uniqueness: true
   validates :email, presence: true, length: { maximum: 255}, uniqueness: true,

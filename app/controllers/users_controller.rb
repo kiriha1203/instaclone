@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_path(@user.id) #//　セッションに送る
+      redirect_to new_session_url
     else
       render :new
     end
@@ -20,6 +20,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation, :introduction)
+                                 :password_confirmation, :introduction, :image)
   end
 end

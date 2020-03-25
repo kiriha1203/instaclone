@@ -7,7 +7,7 @@
 <div class="main_box">
   <div class="main_index">
     <p>ユーザー名</p>
-    <p><%#=current_user.name %></p>
+    <p><%=current_user.name %></p>
     <p>作成日時</p>
     <p><%= @blog.created_at.strftime("%Y-%m-%d %H:%M") %></p>
     <p>内容</p>

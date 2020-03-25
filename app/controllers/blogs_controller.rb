@@ -1,4 +1,7 @@
 class BlogsController < ApplicationController
+  before_action :check_login_ore_kick_session
+  before_action :set_authentication, only: [:edit, :update, :destroy]
+
   def index
     @blogs = Blog.all.order(created_at: "DESC")
   end
@@ -12,11 +15,12 @@ class BlogsController < ApplicationController
   end
 
   def create
-    blog = Blog.new(blog_params)
+    @blog = current_user.blogs.build(blog_params)
     if params[:back]
       render :new
+    else
       if @blog.save
-        redirect_to blogs_path, notice: "投稿しました。"
+        redirect_to root_path, notice: "投稿しました。"
       else
         render :new
       end
@@ -24,23 +28,23 @@ class BlogsController < ApplicationController
   end
 
   def confirm
-    @blog = Blog.new(blog_params)
+    @blog = current_user.blogs.build(blog_params)
     render :new unless @blog.valid?
   end
 
   def edit
-    @blog = Blog.find(params[:id])
   end
 
   def update
-    blog = Blog.find(params[:id])
-    blog.update(blog_params)
-    redirect_to blogs_url, notice: "記事を更新しました。"
+    if @blog.update(blog_params)
+      redirect_to blogs_url, notice: "記事を更新しました。"
+    else
+      render :edit
+    end
   end
 
   def destroy
-    blog = Blog.find(params[:id])
-    blog.destroy
+    @blog.destroy
     redirect_to blogs_url, notice: '記事を削除しました。'
   end
   
@@ -48,5 +52,18 @@ class BlogsController < ApplicationController
   
   def blog_params
     params.require(:blog).permit(:content, :image)
+  end
+
+  def set_authentication
+    @blog = Blog.find(params[:id])
+    unless current_user == @blog.user
+      redirect_to blogs_path, notice: "ユーザーが違います"
+    end
+  end
+
+  def check_login_ore_kick_session
+    unless logged_in?
+      redirect_to new_session_url
+    end
   end
 end
