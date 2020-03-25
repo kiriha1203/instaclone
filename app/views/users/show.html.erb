@@ -1,2 +1,57 @@
-<h3><%= @user.name %> さんのページ </h3>
-<p> メールアドレス: <%= @user.email %></p>
+<div class="profile_box">
+  <div class="profile_top">
+    <div class="profile_image">
+      <%#= image_tag(@user.image, class: 'show_image' ) if @user.image.attached? %>
+     </div>
+     <div class="profile_name_count_tweet">
+       <p><%= @user.name %></p>
+       <p><%= @user.email %></p>
+       <p>投稿 x件</p>
+     </div>
+    <div class="profile_edit">
+      <%= link_to '編集', edit_user_path, class: 'buttons' %>
+    </div>
+  </div>
+
+  <div class="profile_bottom">
+    <% unless @user.introduction.nil? %>
+      <p><%= simple_format(h(@user.introduction), {}, sanitize: false, wrapper_tag: "div") %></p>
+    <% end %>
+  </div>
+</div>
+
+
+<%# @blogs.each do |blog|     自分の投稿したやつだけ表示 %>
+
+<!--  <div class="tweet_box">-->
+
+<!--    <div class="tweet_head">-->
+<!--      <div class="tweet_head_item"></div>-->
+<!--      <div class="tweet_head_item_user_image">user画像</div>-->
+<!--      <div class="tweet_head_user_name"><%#= blog.user.name %></div>-->
+<!--      <div class="tweet_head_show">-->
+        <%#= link_to '詳細', blog_path(blog), class: 'show_button' %>
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="tweet_middle">-->
+<!--      <div class="tweet_middle_item">-->
+<!--        <%#= image_tag(blog.image, class: 'image') if blog.image.attached? %></div>-->
+<!--      <div class="tweet_middle_buttons">-->
+        <%# if blog.user.name == current_user.name %>
+          <%#= link_to '編集', edit_blog_path(blog), class: 'buttons' %>
+          <%#= link_to '削除', blog, method: :delete, data: {confirm: "削除してもよろしいですか？"}, class: 'delete_button' %>
+        <%# else %>
+          <%#= "favorite btn" %>
+        <%# end %>
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="tweet_foot">-->
+<!--      <p><%#= blog.content %></p>-->
+<!--      <time datetime="<%#= blog.created_at %>">-->
+        <%#= time_ago_in_words(blog.created_at) %>
+<!--      </time>-->
+<!--    </div>-->
+<!--  </div>-->
+<%# end %>
