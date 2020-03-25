@@ -1,57 +1,62 @@
 <div class="profile_box">
   <div class="profile_top">
     <div class="profile_image">
-      <%#= image_tag(@user.image, class: 'show_image' ) if @user.image.attached? %>
-     </div>
-     <div class="profile_name_count_tweet">
-       <p><%= @user.name %></p>
-       <p><%= @user.email %></p>
-       <p>投稿 x件</p>
-     </div>
-    <div class="profile_edit">
-      <%= link_to '編集', edit_user_path, class: 'buttons' %>
+      <%= image_tag(@user.image, class: 'show_image') if @user.image.attached? %>
+    </div>
+
+    <div class="profile_top_right">
+      <div class="profile_name_edit">
+        <p class="profile_name"><%= @user.name %></p>
+        <p class="button_container"><%= link_to '編集', edit_user_path, class: 'user_edit_button' %></p>
+      </div>
+
+      <div class="profile_email_blog_count">
+        <p class="profile_email">登録メール　<%= @user.email%></p>
+        <p class="profile_blog_count">投稿件数 <%= current_user.blogs.count %>件</p>
+      </div>
     </div>
   </div>
 
   <div class="profile_bottom">
     <% unless @user.introduction.nil? %>
+      <p>自己紹介</p>
       <p><%= simple_format(h(@user.introduction), {}, sanitize: false, wrapper_tag: "div") %></p>
     <% end %>
   </div>
 </div>
 
 
-<%# @blogs.each do |blog|     自分の投稿したやつだけ表示 %>
+<% current_user.blogs.reverse.each do |blog| %>
 
-<!--  <div class="tweet_box">-->
+  <div class="tweet_box">
 
-<!--    <div class="tweet_head">-->
-<!--      <div class="tweet_head_item"></div>-->
-<!--      <div class="tweet_head_item_user_image">user画像</div>-->
-<!--      <div class="tweet_head_user_name"><%#= blog.user.name %></div>-->
-<!--      <div class="tweet_head_show">-->
-        <%#= link_to '詳細', blog_path(blog), class: 'show_button' %>
-<!--      </div>-->
-<!--    </div>-->
+    <div class="tweet_head">
+      <div class="tweet_head_item"></div>
+      <div class="tweet_head_item_user_image">user画像</div>
+      <div class="tweet_head_user_name"><%= blog.user.name %></div>
+      <div class="tweet_head_show">
+<%= link_to '詳細', blog_path(blog), class: 'show_button' %>
+      </div>
+    </div>
 
-<!--    <div class="tweet_middle">-->
-<!--      <div class="tweet_middle_item">-->
-<!--        <%#= image_tag(blog.image, class: 'image') if blog.image.attached? %></div>-->
-<!--      <div class="tweet_middle_buttons">-->
-        <%# if blog.user.name == current_user.name %>
-          <%#= link_to '編集', edit_blog_path(blog), class: 'buttons' %>
-          <%#= link_to '削除', blog, method: :delete, data: {confirm: "削除してもよろしいですか？"}, class: 'delete_button' %>
-        <%# else %>
-          <%#= "favorite btn" %>
-        <%# end %>
-<!--      </div>-->
-<!--    </div>-->
+    <div class="tweet_middle">
+      <div class="tweet_middle_item">
+        <%= image_tag(blog.image, class: 'image') if blog.image.attached? %></div>
+      <div class="tweet_middle_buttons">
+<% if blog.user.name == current_user.name %>
+<%= link_to '編集', edit_blog_path(blog), class: 'buttons' %>
+<%= link_to '削除', blog, method: :delete, data: {confirm: "削除してもよろしいですか？"}, class: 'delete_button' %>
+<% else %>
+<%= "favorite btn" %>
+<% end %>
+      </div>
+    </div>
 
-<!--    <div class="tweet_foot">-->
-<!--      <p><%#= blog.content %></p>-->
-<!--      <time datetime="<%#= blog.created_at %>">-->
-        <%#= time_ago_in_words(blog.created_at) %>
-<!--      </time>-->
-<!--    </div>-->
-<!--  </div>-->
-<%# end %>
+    <div class="tweet_foot">
+      <p><%= blog.content %></p>
+      <time datetime="<%= blog.created_at %>">
+<%= time_ago_in_words(blog.created_at) %>
+      </time>
+    </div>
+  </div>
+<% end %>

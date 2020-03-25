@@ -1,0 +1,23 @@
+<%= form_with model: @user, local: true do |f| %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label 'ユーザ名' %>
+    <%= f.text_field :name, class: 'form-control', id: 'user_name' %>
+    <%= f.label '画像' %>
+    <%= f.file_field :image, class: 'form-control' %>
+    <%= f.label '自己紹介' %>
+    <%= f.text_area :introduction, row: 30, class: 'form-control', id: 'user_introduction' %>
+  </div>
+
+  <%= f.submit "更新する", class: 'btn btn-primary' %>
+<% end %>
