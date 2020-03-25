@@ -17,7 +17,8 @@
     </div>
 
     <div class="tweet_middle">
-      <div class="tweet_middle_item">投稿画像</div>
+      <div class="tweet_middle_item">
+        <%= image_tag(blog.image, class: 'image') if blog.image.attached? %></div>
       <div class="tweet_middle_buttons">
         <% if blog.user.name == current_user.name %>
         <%= link_to '編集', edit_blog_path(blog), class: 'buttons' %>

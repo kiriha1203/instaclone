@@ -50,7 +50,6 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
   border-radius: 3px;
-  padding-left: 1rem;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.4);
   border: solid 1px #DBDBDB;
 
@@ -62,6 +61,14 @@
       display: flex;
       justify-content: flex-start;
     }
+  }
+
+  .tweet_middle_buttons {
+    padding-left: 1rem;
+  }
+
+  .tweet_foot {
+    padding-left: 1rem;
   }
 }
 
@@ -78,4 +85,10 @@
     font-size: 12px;
 
   }
+}
+
+
+.image {
+  min-width: 100%;
+  max-width: 100%; /* 画像幅以上拡大しないようにする指定 */
 }

@@ -8,8 +8,8 @@
   <div class="form-group">
     <div class="item"><%= f.label '画像' %></div>
     <div class="item">
-      <%#= f.hidden_field :image, value: f.object.image.signed_id %>
-      <%#= image_tag(@blog.image, class: 'image') %>
+      <%= f.hidden_field :image, value: f.object.image.signed_id %>
+      <%= image_tag(@blog.image, class: 'image') %>
     </div>
     <%= f.hidden_field :content %>
     <div class="item"><%= f.label '内容' %></div>
