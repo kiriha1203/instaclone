@@ -1,3 +1,13 @@
 .show_image {
   max-width: 80vw;
 }
+
+.show_link {
+  color: #818181;
+
+  &:hover {
+    color: #1B1B1B;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}

@@ -19,7 +19,7 @@
 </div>
 
 <% if @blog.user.name == current_user.name %>
-  <%= link_to '編集', edit_blog_path, class: 'buttons' %>
+  <%= link_to '編集', edit_blog_path, class: 'show_link' %>
   <%= link_to '削除', @blog, method: :delete, data: {confirm: "削除してもよろしいですか？"},
-              class: 'delete_button' %>
+              class: 'show_link' %>
 <% end %>

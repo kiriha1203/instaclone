@@ -1,3 +1,60 @@
+.create_button {
+  display: block;
+  position: relative;
+  width: 80px;
+  padding: 0.2em;
+  text-align: center;
+  text-decoration: none;
+  color: #1B1B1B;
+  background: #fff;
+  border-radius: 30px;
+  border: 1px solid #1B1B1B;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-animation: create_button 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    -moz-animation: create_button 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: create_button 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+}
+
+@-webkit-keyframes create_button{
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+}
+
+@-moz-keyframes create_button{
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes create_button {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+}
+
 .header_container {
   height: 45px;
   min-width: 100vw;
@@ -40,7 +97,20 @@
 
 .nav-link {
   float: right;
+  position: relative;
+  width: 80px;
+  text-align: center;
+  text-decoration: none;
+  color: #818181;
+
+  &:hover {
+    color: #1B1B1B;
+    cursor: pointer;
+    text-decoration: none;
+  }
 }
+
+
 
 .tweet_box {
   background-color: #FFFFFF;
@@ -55,19 +125,37 @@
   .tweet_head {
     display: flex;
     justify-content: space-between;
+    padding: 6px 0 6px 10px;
 
     .tweet_head_item {
       display: flex;
       justify-content: flex-start;
+
+      .tweet_head_user_name {
+        margin: auto 0 auto 10px;
+
+      }
+    }
+
+    .tweet_head_show {
+      margin: auto 0 auto 0;
     }
   }
 
+
   .tweet_middle_buttons {
     padding-left: 1rem;
+    padding-top: 8px;
+    height: 40px;
   }
 
   .tweet_foot {
-    padding-left: 1rem;
+    padding: 2rem 0 1rem 15px;
+
+    .time {
+      color: #8E8E8E;
+      font-size: 10px;
+    }
   }
 }
 
@@ -90,4 +178,46 @@
 .image {
   min-width: 100%;
   max-width: 100%; /* 画像幅以上拡大しないようにする指定 */
+}
+
+.index_image {
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+}
+
+.show_button {
+  display: block;
+  position: relative;
+  width: 80px;
+  padding: 0.8em;
+  text-align: center;
+  text-decoration: none;
+  color: #818181;
+
+  &:hover {
+    color: #1B1B1B;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+
+.tweet_icon {
+  padding: 10px;
+
+  .tweet_icon_image {
+    height: 24px;
+    width: 24px;
+
+    &:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
+
+    &:active {
+      position: relative;
+      top: 3px;
+    }
+  }
 }

@@ -18,7 +18,7 @@
   </div>
 
   <div class="profile_bottom">
-    <% unless @user.introduction.nil? %>
+    <% unless @user.introduction.nil? || @user.introduction.blank? %>
       <p>自己紹介</p>
       <p><%= simple_format(h(@user.introduction), {}, sanitize: false, wrapper_tag: "div") %></p>
     <% end %>
@@ -26,16 +26,20 @@
 </div>
 
 
-<% current_user.blogs.reverse.each do |blog| %>
+<% current_user.blogs.order( created_at: :desc).each do |blog| %>
 
   <div class="tweet_box">
 
     <div class="tweet_head">
-      <div class="tweet_head_item"></div>
-      <div class="tweet_head_item_user_image">user画像</div>
-      <div class="tweet_head_user_name"><%= blog.user.name %></div>
+      <div class="tweet_head_item">
+        <div class="tweet_head_item_user_image">
+          <%= image_tag(blog.user.image, class: 'index_image') if blog.user.image.attached? %>
+        </div>
+        <div class="tweet_head_user_name"><%= blog.user.name %></div>
+      </div>
+
       <div class="tweet_head_show">
-<%= link_to '詳細', blog_path(blog), class: 'show_button' %>
+        <%= link_to '詳細', blog_path(blog), class: 'show_button' %>
       </div>
     </div>
 
@@ -43,20 +47,26 @@
       <div class="tweet_middle_item">
         <%= image_tag(blog.image, class: 'image') if blog.image.attached? %></div>
       <div class="tweet_middle_buttons">
-<% if blog.user.name == current_user.name %>
-<%= link_to '編集', edit_blog_path(blog), class: 'buttons' %>
-<%= link_to '削除', blog, method: :delete, data: {confirm: "削除してもよろしいですか？"}, class: 'delete_button' %>
-<% else %>
-<%= "favorite btn" %>
-<% end %>
+        <% if blog.user.name == current_user.name %>
+          <%= link_to edit_blog_path(blog), class: 'tweet_icon' do %>
+            <%= image_tag "tweet_edit.svg", class: 'tweet_icon_image' %>
+          <% end %>
+          <%= link_to blog, method: :delete, data: {confirm: "削除してもよろしいですか？"}, class: 'tweet_icon' do %>
+            <%= image_tag "tweet_delete.svg", class: 'tweet_icon_image' %>
+          <% end %>
+        <% else %>
+        <%= "favorite btn" %>
+        <% end %>
       </div>
     </div>
 
     <div class="tweet_foot">
       <p><%= blog.content %></p>
-      <time datetime="<%= blog.created_at %>">
-<%= time_ago_in_words(blog.created_at) %>
-      </time>
+      <div class="time">
+        <time datetime="<%= blog.created_at %>">
+          <%= time_ago_in_words(blog.created_at) %>
+        </time>
+      </div>
     </div>
   </div>
 <% end %>
