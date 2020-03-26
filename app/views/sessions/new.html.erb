@@ -1,0 +1,16 @@
+<div class="account_body">
+  <div class="account_form">
+    <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+      <div class="title">Instaclone</div>
+      <div class="email_box"><%= f.email_field :email, class: 'account_form_box', :placeholder => "メールアドレス" %></div>
+      <div class="password_box"><%= f.password_field :password, class: 'account_form_box', :placeholder => "パスワード" %></div>
+      <%= f.submit "ログイン", class: 'account_button' %>
+    <% end %>
+  </div>
+
+  <div class="to_login_or_create_account">
+    <p class="comment">アカウントをお持ちでないですか？
+      <%= link_to '登録する', new_user_path, class: 'link' %>
+    </p>
+  </div>
+</div>
