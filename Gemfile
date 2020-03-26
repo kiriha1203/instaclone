@@ -65,3 +65,7 @@ end
 gem 'mini_magick'
 
 gem 'rails_12factor', group: :production
+
+group :development do
+  gem 'letter_opener_web'
+end
