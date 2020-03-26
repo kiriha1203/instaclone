@@ -6,4 +6,8 @@ module BlogsHelper
       blog_path
     end
   end
+
+  def favorite_method
+    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
+  end
 end

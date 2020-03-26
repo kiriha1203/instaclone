@@ -6,13 +6,13 @@
 
 <%= form_with(model: @blog, local: true) do |f| %>
   <div class="form-group">
-    <div class="item"><%= f.label '画像' %></div>
-    <div class="item">
-      <% if @blog.image.attached? %>
+    <% if @blog.image.attached? %>
+      <div class="item"><%= f.label '画像' %></div>
+      <div class="item">
         <%= f.hidden_field :image, value: f.object.image.signed_id %>
         <%= image_tag(@blog.image, class: 'image') %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
     <%= f.hidden_field :content %>
     <div class="item"><%= f.label '内容' %></div>
     <div class="item"><%= @blog.content %></div>

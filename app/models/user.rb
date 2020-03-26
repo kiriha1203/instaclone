@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :blogs
+  has_many :favorites, dependent: :destroy
   has_one_attached :image
 
   before_validation { email.downcase! }
