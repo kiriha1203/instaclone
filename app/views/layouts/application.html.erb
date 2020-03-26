@@ -19,15 +19,28 @@
     <div class="icons">
       <%if logged_in? %>
         <div class="home_icon">
-          <%= link_to "ホーム", root_path %>
+          <%= link_to root_path, class:  'header_icon' do %>
+          <%= image_tag "header_home.svg", class: 'header_icon_image' %>
+          <% end %>
         </div>
         <div class="favorite_icon">
-          <%= link_to "イイね", favorites_index_blogs_path(current_user.id) %>
+          <%= link_to favorites_index_blogs_path(current_user.id), class: 'header_icon' do %>
+            <%= image_tag "header_favorite.svg", class: 'header_icon_image' %>
+          <% end %>
         </div>
         <div class="profile_icon">
-          <%= link_to "プロフ画像", user_path(current_user.id) %></div>
-        <div class="logout">
-          <%= link_to "ログアウト", session_path(current_user.id), method: :delete  %>
+          <%= link_to user_path(current_user.id), class: 'header_icon' do %>
+            <% if current_user.image.attached? %>
+              <%= image_tag(current_user.image, class: 'header_image') %>
+            <% else %>
+              <%= image_tag "header_profile.svg", class: 'header_icon_image' %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="logout_icon">
+          <%= link_to session_path(current_user.id), method: :delete, class: 'header_icon' do %>
+            <%= image_tag "header_logout.svg", class: 'header_icon_image' %>
+          <% end %>
         </div>
       <% else %>
         <div class="sign_login">
