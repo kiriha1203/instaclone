@@ -21,9 +21,11 @@
         <div class="home_icon">
           <%= link_to "ホーム", root_path %>
         </div>
-        <div class="favorite_icon">いいね</div>
+        <div class="favorite_icon">
+          <%= link_to "イイね", favorites_index_blogs_path(current_user.id) %>
+        </div>
         <div class="profile_icon">
-          <%= link_to "プロフ画像",user_path(current_user.id) %></div>
+          <%= link_to "プロフ画像", user_path(current_user.id) %></div>
         <div class="logout">
           <%= link_to "ログアウト", session_path(current_user.id), method: :delete  %>
         </div>

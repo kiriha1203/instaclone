@@ -48,6 +48,10 @@ class BlogsController < ApplicationController
     @blog.destroy
     redirect_to blogs_url, notice: '記事を削除しました。'
   end
+
+  def favorites_index
+    @blog = current_user.favorite_blogs.order(created_at: "DESC")
+  end
   
   private
   
